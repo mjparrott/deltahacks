@@ -2,7 +2,7 @@ from django import forms
 from django.db import models
 
 class SignUpForm(forms.Form):
-  user_name = forms.CharField(label = 'Please select a username', max_length = 100)
+  username = forms.CharField(label = 'Please select a username', max_length = 100)
   first_name = forms.CharField(label = 'First Name', max_length = 30)
   last_name = forms.CharField(label = 'Last Name', max_length = 30)
   password = forms.CharField(label = 'Enter your password', max_length = 100, widget = forms.PasswordInput)

@@ -1,10 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class DeltaUser(models.Model):
-  first_name = models.CharField(max_length=30)
-  last_name = models.CharField(max_length=30)
+  user = models.OneToOneField(User)
   birthdate = models.DateField()
   ethnicity = models.CharField(max_length=30)
   religion = models.CharField(max_length=30)

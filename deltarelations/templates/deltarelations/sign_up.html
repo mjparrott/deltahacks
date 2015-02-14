@@ -5,7 +5,7 @@
 {% block content %}
 <form action="deltarelations/sign_up" method="post">
   {% csrf_token %}
-  {{ form }}
+  {{ form.as_table }}
   <input type="submit" value="Submit" />
 </form>
 {% endblock %}

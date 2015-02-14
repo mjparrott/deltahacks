@@ -13,7 +13,7 @@ class SignUpForm(forms.Form):
   sex = forms.CharField(label = 'Sex', max_length = 30)
   location = models.CharField(max_length = 30)
 
-class EditProfileForm(forms.Form)
+class EditProfileForm(forms.Form):
   user_name = forms.CharField(label = 'Please select a username', max_length = 100)
   first_name = forms.CharField(label = 'First Name', max_length = 30)
   last_name = forms.CharField(label = 'Last Name', max_length = 30)

@@ -56,3 +56,19 @@ def edit_profile(request):
     form = forms.EditProfileForm()
     
   return render(request, 'deltarelations/edit_profile.html',{'form':form})
+
+def view_matches(request):
+  user = request.user
+  # Make sure the user is logged in before viewing this page
+  if not user.is_authenticated:
+    return HttpResponseRedirect('/')
+
+  giving_advice_to = user.deltauser.provider.all()
+  receiving_advice_from = user.deltauser.recipient.all()
+
+  return render(request, 'deltarelations/view_matches.html',
+  {
+    'user': user,
+    'giving_advice_to': giving_advice_to,
+    'receiving_advice_from': receiving_advice_from
+  })

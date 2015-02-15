@@ -1,0 +1,21 @@
+{% extends "deltarelations/base.html" %}
+
+{% block title %}View Matches{% endblock %}
+
+{% block content %}
+<h1>Delta Relations - View Matches</h1>
+<h2>Giving Advice To</h2>
+<ul>
+{% for convo in giving_advice_to %}
+  <li>{{ convo.issue.issue }}</li>
+{% endfor %}
+</ul>
+
+<h2>Reciving Advice From</h2>
+<ul>
+{% for convo in receiving_advice_from %}
+  <li>{{ convo.issue.issue }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

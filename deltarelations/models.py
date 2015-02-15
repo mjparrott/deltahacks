@@ -20,7 +20,6 @@ class Issues(models.Model):
 
 class Provided(models.Model):
   Uid1 = models.ForeignKey(DeltaUser, related_name="uid1")
-  Uid2 = models.ForeignKey(DeltaUser, related_name="uid2")
   Iid = models.ForeignKey(Issues)
 
 from django.core.exceptions import ValidationError
@@ -37,4 +36,6 @@ class Matches(models.Model):
   recipient = models.ForeignKey(DeltaUser, related_name="recipient")
   ratings = models.ForeignKey(Ratings)
   issue = models.ForeignKey(Issues)
+ 
+ 
 

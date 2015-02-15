@@ -1,4 +1,5 @@
 db.sqlite3
 deltahacks/__pycache__/
 deltarelations/__pycache__/
+deltarelations/migrations/__pycache__/
 *.swp

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
 from deltarelations import forms
-from deltarelations.models import DeltaUser
+from deltarelations.models import DeltaUser, Issues
 
 def index(request):
   template = loader.get_template('deltarelations/index.html')
@@ -88,4 +88,23 @@ def find_matches(request):
   {
     'user': user,
     'relevant_users': relevant_users
+  })
+
+def add_issue(request):
+  user = request.user
+  if not user.is_authenticated:
+    return HttpResponseRedirect('/')
+
+  if request.method == "POST":
+    form = forms.IssueForm(request.POST)
+    if form.is_valid():
+      issue = Issues(issue=form.cleaned_data['issue'])
+      issue.save()
+      return HttpResponseRedirect('/deltarelations')
+  else:
+    form = forms.IssueForm()
+
+  return render(request, 'deltarelations/add_issue.html',
+  {
+    'form': form
   })

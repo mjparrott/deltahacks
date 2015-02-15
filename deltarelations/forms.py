@@ -26,3 +26,6 @@ class EditProfileForm(forms.Form):
 class LoginForm(forms.Form):
   username = forms.CharField(label = 'Username', max_length = 100)
   password = forms.CharField(label = 'Password', max_length = 100, widget = forms.PasswordInput)
+
+class IssueForm(forms.Form):
+  issue = forms.CharField(label = 'Issue Description', max_length = 200)

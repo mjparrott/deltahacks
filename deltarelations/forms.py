@@ -24,3 +24,7 @@ class EditProfileForm(forms.Form):
   relstat = forms.CharField(label = 'Relationship Status', max_length = 30)
   sex = forms.CharField(label = 'Sex', max_length = 30)
   location = models.CharField(max_length = 30)
+
+class LoginForm(forms.Form):
+  username = forms.CharField(label = 'Username', max_length = 100)
+  password = forms.CharField(label = 'Password', max_length = 100, widget = forms.PasswordInput)

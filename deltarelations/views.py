@@ -16,10 +16,9 @@ def sign_up(request):
   if request.method == 'POST':
     form = forms.SignUpForm(request.POST)
     if form.is_valid():
-      user = User.objects.create_user(username = form.cleaned_data['username'], 
-        password = form.cleaned_data['password'], first_name = form.cleaned_data['first_name'], last_name = form.cleaned_data['last_name'])
+      user = User.objects.create_user(form.cleaned_data['username'], form.cleaned_data['password'])
       user.save()
-      delta_user = DeltaUser(user = user, birthdate = form.cleaned_data['birthdate'], ethnicity = form.cleaned_data['ethnicity'], religion = form.cleaned_data['religion'], relstat = form.cleaned_data['relstat'], sex = form.cleaned_data['sex'], location = form.cleaned_data['location'])
+      delta_user = DeltaUser(user = user, first_name = form.cleaned_data['first_name'], last_name = form.cleaned_data['last_name'], birthdate = form.cleaned_data['birthdate'], ethnicity = form.cleaned_data['ethnicity'], religion = form.cleaned_data['religion'], relstat = form.cleaned_data['relstat'], sex = form.cleaned_data['sex'], location = form.cleaned_data['location'])
       delta_user.save()
       return HttpResponseRedirect('/deltarelations')
   else:
@@ -32,7 +31,7 @@ def log_in(request):
   if request.method == 'POST':
     form = forms.LoginForm(request.POST)
     if form.is_valid():
-      username = form.cleaned_data['user_name']
+      username = form.cleaned_data['username']
       password = form.cleaned_data['password']
       user = authenticate(username = username, password = password)
       if user is not None:

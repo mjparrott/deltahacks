@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 class DeltaUser(models.Model):
   user = models.OneToOneField(User)
+  first_name = models.CharField(max_length=30)
+  last_name = models.CharField(max_length=30)
   birthdate = models.DateField()
   ethnicity = models.CharField(max_length=30)
   religion = models.CharField(max_length=30)

@@ -17,10 +17,7 @@ class DeltaUser(models.Model):
 
 class Issues(models.Model):
   issue = models.CharField(max_length=30)
-
-class Provided(models.Model):
-  Uid1 = models.ForeignKey(DeltaUser, related_name="uid1")
-  Iid = models.ForeignKey(Issues)
+  delta_users = models.ManyToManyField(DeltaUser)
 
 from django.core.exceptions import ValidationError
 

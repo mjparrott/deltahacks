@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
 from deltarelations import forms
-from deltarelations.models import DeltaUser
+from deltarelations.models import DeltaUser, Provided
 
 def index(request):
   template = loader.get_template('deltarelations/index.html')
@@ -72,3 +72,12 @@ def view_matches(request):
     'giving_advice_to': giving_advice_to,
     'receiving_advice_from': receiving_advice_from
   })
+
+def find_profile(request):
+  user = request.user
+  # Make sure the user is logged in before viewing this page
+  if not user.is_authenticated:
+    return HttpResponseRedirect('/')
+  
+  users_issues = Provider.objects.all()
+  

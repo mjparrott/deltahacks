@@ -1,13 +1,20 @@
 {% extends "deltarelations/base.html" %}
 
 {% block title %}Sign Up{% endblock %}
+<h1> Sign up Form </h1>
 
 {% block content %}
-<form action="deltarelations/sign_up" method="post">
-  {% csrf_token %}
-  <table>
-  {{ form.as_table }}
-  </table>
-  <input type="submit" value="Submit" />
-</form>
+  <p>
+  </p>
+  <form action="deltarelations/sign_up" method="post">
+    {% csrf_token %}
+    <table class = "signuptable">
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" />
+  </form>
 {% endblock %}
+
+table {
+
+}

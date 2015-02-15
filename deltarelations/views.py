@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from deltarelations import forms
 from deltarelations.models import DeltaUser, Issues
@@ -132,3 +132,7 @@ def add_issue(request):
   {
     'form': form
   })
+
+def log_out(request):
+  logout(request)
+  return HttpResponseRedirect('/deltarelations')

@@ -9,5 +9,6 @@ urlpatterns = patterns('',
   url(r'^view_matches', views.view_matches, name = 'view_matches'),
   url(r'^find_matches', views.find_matches, name = 'find_matches'),
   url(r'^add_issue', views.add_issue, name = 'add_issue'),
+  url(r'^log_out', views.log_out, name = 'log_out'),
   url(r'^$', views.index, name='index')
 )

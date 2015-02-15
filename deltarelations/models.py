@@ -19,6 +19,12 @@ class Issues(models.Model):
   issue = models.CharField(max_length=30)
   delta_users = models.ManyToManyField(DeltaUser)
 
+  def __str__(self):
+    return self.issue
+
+  def __repr__(self):
+    return self.issue
+
 from django.core.exceptions import ValidationError
 
 def validate_ratings(value):

@@ -48,7 +48,7 @@ def log_in(request):
   
 def edit_profile(request):
   if request.method == 'POST':
-    forms = forms.EditProfileForm(request.POST)
+    form = forms.EditProfileForm(request.POST)
     delta_user = DeltaUser(user = user, birthdate = form.cleaned_data['birthday'], ethnicity = form.cleaned_data['ethnicity'], religion = form.cleaned_data['religion'], relstat = form.cleaned_data['relstat'], sex = form.cleaned_data['sex'], location = form.cleaned_data['location'])
     delta_user.save()
     return HttpResponseRedirect('/')

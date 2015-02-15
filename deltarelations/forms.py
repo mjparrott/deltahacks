@@ -17,11 +17,11 @@ class EditProfileForm(forms.Form):
   first_name = forms.CharField(label = 'First Name', max_length = 30)
   last_name = forms.CharField(label = 'Last Name', max_length = 30)
   birthdate = forms.DateField(label = 'Birthday (YYYY-MM-DD)', input_formats = '%Y-%m-%d')
-  ethinicity = forms.CharField(label = 'Ethnicity', max_length = 30)
+  ethnicity = forms.CharField(label = 'Ethnicity', max_length = 30)
   religion = forms.CharField(label = 'Religion', max_length = 30)
   relstat = forms.CharField(label = 'Relationship Status', max_length = 30)
   sex = forms.CharField(label = 'Sex', max_length = 30)
-  location = models.CharField(max_length = 30)
+  location = forms.CharField(label = 'Location', max_length = 30)
 
 class LoginForm(forms.Form):
   username = forms.CharField(label = 'Username', max_length = 100)

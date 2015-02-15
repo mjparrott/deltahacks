@@ -18,7 +18,7 @@ class SignUpForm(forms.Form):
 class EditProfileForm(forms.Form):
   first_name = forms.CharField(label = 'First Name', max_length = 30)
   last_name = forms.CharField(label = 'Last Name', max_length = 30)
-  birthdate = forms.DateField(label = 'Birthday (YYYY-MM-DD)', input_formats = '%Y-%m-%d')
+  birthdate = forms.DateField(label = 'Birthday (YYYY-MM-DD)', input_formats = ['%Y-%m-%d'])
   ethnicity = forms.CharField(label = 'Ethnicity', max_length = 30)
   religion = forms.CharField(label = 'Religion', max_length = 30)
   relstat = forms.CharField(label = 'Relationship Status', max_length = 30)

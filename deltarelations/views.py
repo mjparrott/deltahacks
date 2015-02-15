@@ -47,11 +47,23 @@ def log_in(request):
   return render(request, 'deltarelations/log_in.html', {'form': form})
   
 def edit_profile(request):
+  user = request.user
   if request.method == 'POST':
     form = forms.EditProfileForm(request.POST)
-    delta_user = DeltaUser(user = user, birthdate = form.cleaned_data['birthday'], ethnicity = form.cleaned_data['ethnicity'], religion = form.cleaned_data['religion'], relstat = form.cleaned_data['relstat'], sex = form.cleaned_data['sex'], location = form.cleaned_data['location'])
-    delta_user.save()
-    return HttpResponseRedirect('/')
+    if form.is_valid():
+      delta_user = DeltaUser.objects.get(user_id = user.id)
+      delta_user.first_name = form.cleaned_data['first_name']
+      delta_user.last_name = form.cleaned_data['last_name']
+      delta_user.birthdate = form.cleaned_data['birthdate']
+      delta_user.ethnicity = form.cleaned_data['ethnicity']
+      delta_user.religion = form.cleaned_data['religion']
+      delta_user.relstat = form.cleaned_data['relstat']
+      delta_user.sex = form.cleaned_data['sex']
+      delta_user.location = form.cleaned_data['location']
+      delta_user.issues_set = form.cleaned_data['issues']
+      #delta_user = DeltaUser(user = user, first_name = form.cleaned_data['first_name'], last_name = form.cleaned_data['last_name'], birthdate = form.cleaned_data['birthdate'], ethnicity = form.cleaned_data['ethnicity'], religion = form.cleaned_data['religion'], relstat = form.cleaned_data['relstat'], sex = form.cleaned_data['sex'], location = form.cleaned_data['location'])
+      delta_user.save()
+      return HttpResponseRedirect('/deltarelations')
   else:
     du = request.user.deltauser
     form = forms.EditProfileForm(initial={
@@ -63,7 +75,8 @@ def edit_profile(request):
       'relstat': du.relstat,
       'sex': du.sex,
       'gender': du.gender,
-      'location': du.location
+      'location': du.location,
+      'issues': du.issues_set.all()
     })
     
   return render(request, 'deltarelations/edit_profile.html',{'form':form})
@@ -91,9 +104,9 @@ def find_matches(request):
     return HttpResponseRedirect('/')
   delta_user = user.deltauser
   users_issues = delta_user.issues_set.all()
-  
+
   # Find all the users who have the same issues as the logged in user
-  relevant_users = DeltaUser.objects.filter(issues__in=users_issues).distinct()
+  relevant_users = DeltaUser.objects.filter(issues__in=users_issues).exclude(user_id = user.id).distinct()
 
   return render(request, 'deltarelations/find_matches.html',
   {

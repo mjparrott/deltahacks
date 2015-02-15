@@ -15,6 +15,12 @@ class DeltaUser(models.Model):
   gender = models.CharField(max_length=30)
   location = models.CharField(max_length=30)
 
+  def __str__(self):
+    return self.first_name + " " + self.last_name
+  
+  def __repr__(self):
+    return self.first_name + " " + self.last_name
+
 class Issues(models.Model):
   issue = models.CharField(max_length=30)
   delta_users = models.ManyToManyField(DeltaUser)

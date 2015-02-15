@@ -17,10 +17,13 @@ class DeltaUser(models.Model):
 
 class Issues(models.Model):
   issue = models.CharField(max_length=30)
+  delta_users = models.ManyToManyField(DeltaUser)
 
-class Provided(models.Model):
-  Uid1 = models.ForeignKey(DeltaUser, related_name="uid1")
-  Iid = models.ForeignKey(Issues)
+  def __str__(self):
+    return self.issue
+
+  def __repr__(self):
+    return self.issue
 
 from django.core.exceptions import ValidationError
 

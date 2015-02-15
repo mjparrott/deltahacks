@@ -33,7 +33,7 @@ def edit_profile(request):
     delta_user = DeltaUser(user = user, birthdate = form.cleaned_data['birthday'], ethnicity = form.cleaned_data['ethnicity'], religion = form.cleaned_data['religion'], relstat = form.cleaned_data['relstat'], sex = form.cleaned_data['sex'], location = form.cleaned_data['location'])
     delta_user.save()
     return HttpResponseRedirect('/')
-   else:
+  else:
     form = forms.EditProfileForm()
     
   return render(request, 'deltarelations/edit_profile.html',{'form':form})

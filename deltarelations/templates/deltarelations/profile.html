@@ -1,0 +1,38 @@
+{% extends "deltarelations/base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+  <li><a href="/groups/add_group">Add to group</a></li>
+
+{% endblock %}
+
+
+
+<body>
+  <h1 class='one'>Clean It</h1>
+  {% if user.is_authenticated %}
+    <p class='one'>Welcome {{ user.username }}! </p>
+  {% endif %}
+  <ul class = 'one'>
+    {% if user.is_authenticated %}
+      {% if user.cleanuser.group %}
+        <li><a href="/groups/add_group">Add to group</a></li>
+        <li><a href="/groups/view_group">View group</a></li>
+        <li><a href="/tasks/add_task">Add Task</a></li>
+        <li><a href="/create_schedule">Create Schedule</a></li>
+      {% else %}
+        <li><a href="/groups/create_group">Create a group</a></li>
+      {% endif %}
+      <li><a href="/view_sched">View schedule</a></li>
+    {% endif %}
+    {% if user.is_authenticated %}
+      <li><a href="/log_out">Log out</a></li>
+    {% else %}
+      <li><a href="/log_in">Log in</a></li>
+      <li><a href="/sign_up">Sign Up</a></li>
+    {% endif %}
+  </ul>
+</body>

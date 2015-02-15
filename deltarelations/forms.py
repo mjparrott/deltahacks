@@ -14,10 +14,8 @@ class SignUpForm(forms.Form):
   location = models.CharField(max_length = 30)
 
 class EditProfileForm(forms.Form):
-  user_name = forms.CharField(label = 'Please select a username', max_length = 100)
   first_name = forms.CharField(label = 'First Name', max_length = 30)
   last_name = forms.CharField(label = 'Last Name', max_length = 30)
-  password = forms.CharField(label = 'Enter your password', max_length = 100, widget = forms.PasswordInput)
   birthdate = forms.DateField(label = 'Birthday (YYYY-MM-DD)', input_formats = '%Y-%m-%d')
   ethinicity = forms.CharField(label = 'Ethnicity', max_length = 30)
   religion = forms.CharField(label = 'Religion', max_length = 30)

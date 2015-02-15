@@ -25,6 +25,7 @@ def sign_up(request):
   else:
     form = forms.SignUpForm()
 
+
   return render(request, 'deltarelations/sign_up.html', {'form': form})
 
 def log_in(request): 
@@ -41,3 +42,14 @@ def log_in(request):
     form = forms.LoginForm()
 
   return render(request, 'deltarelations/log_in.html', {'form': form})
+  
+def edit_profile(request):
+  if request.method == 'POST':
+    forms = forms.EditProfileForm(request.POST)
+    delta_user = DeltaUser(user = user, birthdate = form.cleaned_data['birthday'], ethnicity = form.cleaned_data['ethnicity'], religion = form.cleaned_data['religion'], relstat = form.cleaned_data['relstat'], sex = form.cleaned_data['sex'], location = form.cleaned_data['location'])
+    delta_user.save()
+    return HttpResponseRedirect('/')
+  else:
+    form = forms.EditProfileForm()
+    
+  return render(request, 'deltarelations/edit_profile.html',{'form':form})

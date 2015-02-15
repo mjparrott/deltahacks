@@ -5,9 +5,17 @@
 {% block content %}
 <h1>Delta Relations</h1>
 
+{% if user.is_authenticated %}
+  <p>Welcome {{ user.username }}! </p>
+{% endif %}
+
 <ul>
-  <li><a href="sign_up">Sign Up</a></li>
-  <li><a href="log_in">Log In</a></li>
-  <li><a href="edit_profile">Edit Profile</a></li>
+  {% if user.is_authenticated %}
+    <li><a href="edit_profile">Edit Profile</a></li>
+  {% else %}
+    <li><a href="sign_up">Sign Up</a></li>
+    <li><a href="log_in">Log In</a></li>
+  {% endif %}
 </ul>
+
 {% endblock %}

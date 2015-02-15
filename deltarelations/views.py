@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
 from deltarelations import forms
-from deltarelations.models import DeltaUser, Provided
+from deltarelations.models import DeltaUser
 
 def index(request):
   template = loader.get_template('deltarelations/index.html')
@@ -73,11 +73,19 @@ def view_matches(request):
     'receiving_advice_from': receiving_advice_from
   })
 
-def find_profile(request):
+def find_matches(request):
   user = request.user
   # Make sure the user is logged in before viewing this page
   if not user.is_authenticated:
     return HttpResponseRedirect('/')
+  delta_user = user.deltauser
+  users_issues = delta_user.issues_set.all()
   
-  users_issues = Provider.objects.all()
-  
+  # Find all the users who have the same issues as the logged in user
+  relevant_users = DeltaUser.objects.filter(issues__in=users_issues).distinct()
+
+  return render(request, 'deltarelations/find_matches.html',
+  {
+    'user': user,
+    'relevant_users': relevant_users
+  })

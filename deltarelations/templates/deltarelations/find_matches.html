@@ -3,5 +3,10 @@
 {% block title %}Delta Relations - Find Matches{% endblock %}
 
 {% block content %}
-
+<h1>Delta Relations - Find Matches</h1>
+<ul>
+  {% for user in relevant_users %}
+  <li>{{ user }}</li>
+  {% endfor %}
+</ul>
 {% endblock %}
